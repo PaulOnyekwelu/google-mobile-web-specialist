@@ -1,0 +1,51 @@
+/* main.css */
+
+.no-flexbox .container {
+    background: #eee;
+    overflow: auto;
+  }
+  
+  .no-flexbox .container .col {
+      width: 27%;
+      padding: 30px 3.15% 0;
+      float: left;
+  }
+  
+  /* TODO 3 - style the page */
+  
+  /* TODO 4 - use media query */
+  @media screen and (max-width: 48rem){
+      .no-flexbox .container .col {
+          width: 95%
+      }
+  }
+  
+
+  /* TODO 5.2 - use flexbox */
+  .flexbox .container {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      background: #eee;
+      overflow: auto;
+  }
+
+  .flexbox .container .col{
+      flex: 1;
+      padding: 1rem;
+  }
+
+  /* .container .col:nth-child(2){
+      flex: 3;
+  } */
+  /* TODO 5.4 - use media query with Flexbox*/
+  @media screen and (max-width: 48rem){
+      .flexbox .container{
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          flex-direction: column;
+      }
+  }
+  
+
