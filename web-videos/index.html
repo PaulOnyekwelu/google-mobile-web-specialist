@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    <video id="vid1" width="500" controls>
+        <source src="https://storage.googleapis.com/webfundamentals-assets/videos/chrome.webm" type="video/webm">
+        <source src="https://storage.googleapis.com/webfundamentals-assets/videos/chrome.mp4" type="video/mp4">
+        <track src="track.vtt" label="English captions" kind="captions" srclang="en" default >
+        <p>This browser does not support the video element.</p>
+    </video>
+    <button onclick="reqFullscreen()">fullscreen</button>
+</body>
+<script>
+    const vid1 = document.getElementById('vid1')
+    const mq = window.matchMedia('(max-width: 500px)')
+
+    //if(mq.matches){
+    //    vid1.src = './videos/bird.webm'
+    //}else{
+    //    vid1.src = './videos/bird.mp4'
+    //}
+
+    const reqFullscreen = () => {
+        vid1.requestFullscreen()
+    }
+    vid1.addEventListener('fullscreenchange', () => {
+        if(document.fullscreenElement){
+            console.log('full screen element: ', document.fullscreenElement)
+            console.log('is fullscreen mode: ', vid1.displayingFullscreen)
+        }else{
+            console.log('there is none')
+            console.log('is fullscreen mode: ', vid1.displayingFullscreen)
+        }
+    })
+</script>
+</html>
