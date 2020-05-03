@@ -1,0 +1,16 @@
+#bgImage{
+    width: 20rem;
+    height: 20rem;
+
+    background-image: -webkit-image-set(
+    url(images/horses_small.jpg) 1x,
+    url(images/horses_medium.jpg) 2x
+);
+}
+
+#gmail{
+    width: 2.5rem;
+    height: 2rem;
+    background-image: url(images/img-sprite.png);
+    background-position: -150px -210px; 
+}
