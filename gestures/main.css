@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#carousel{
+    width: 100vw;
+    height: 100vh;
+    background: rgb(76, 76, 190);
+    position: absolute;
+    overflow: hidden;
+}
+#track{
+    position:absolute;
+    top: 5rem;
+    left: 2rem;
+    display: flex;
+    touch-action: none;
+}
+.card{
+    width: 20rem;
+    height: 20rem;
+    background: white;
+    margin-right: 2rem;
+}
