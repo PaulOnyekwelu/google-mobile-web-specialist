@@ -35,7 +35,6 @@ const jsonParser = bodyParser.json();
 const textParser = bodyParser.text();
 
 app.post('/', [formParser, jsonParser, textParser], (req, res) => {
-
   res.write(JSON.stringify(req.headers, null, 2))
   res.write('\n\n')
 
@@ -48,11 +47,13 @@ app.post('/', [formParser, jsonParser, textParser], (req, res) => {
   if (contentType.includes('application/json') ||
       contentType.includes('multipart/form-data')) {
     res.write(JSON.stringify(req.body, null, 2))
+    console.log('this is json or image')
   }
 
   res.end()
 
 });
+
 
 const server = app.listen(port, () => {
   const host = server.address().address;
