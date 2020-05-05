@@ -17,53 +17,57 @@ limitations under the License.
 // helper functions ----------
 
 function logResult(result) {
-  console.log(result);
+	console.log(result);
 }
 
 function logError(error) {
-  console.log('Looks like there was a problem:', error);
+	console.log('Looks like there was a problem:', error);
 }
 
 function validateResponse(response) {
-  if(!response.ok){
-    throw new Error(response.statusText);
-  }
-  return response;
+	if (!response.ok) {
+		throw new Error(response.statusText);
+	}
+	return response;
 }
+
+function logHeader (response) {
+	console.log(response.headers.get('content-length'));
+} 
 
 
 function showImage(responseAsBlob) {
-  const container = document.getElementById('img-container');
-  const imgElem = document.createElement('img');
-  container.appendChild(imgElem);
-  const imgUrl = URL.createObjectURL(responseAsBlob);
-  imgElem.src = imgUrl;
+	const container = document.getElementById('img-container');
+	const imgElem = document.createElement('img');
+	container.appendChild(imgElem);
+	const imgUrl = URL.createObjectURL(responseAsBlob);
+	imgElem.src = imgUrl;
 }
 
-function showText (responseAsText) {
-  const textParagraph = document.querySelector('#message');
-  textParagraph.textContent = responseAsText
+function showText(responseAsText) {
+	const textParagraph = document.querySelector('#message');
+	textParagraph.textContent = responseAsText
 }
 
 function readResponseAsJson(response) {
-  return response.json()
+	return response.json()
 }
 
 function readResponseAsBlob(response) {
-  return response.blob();
+	return response.blob();
 }
 
 function readResponseAsText(response) {
-  return response.text()
+	return response.text()
 }
 
 // Fetch JSON ----------
 function fetchJSON() {
-  fetch('examples/animals.json')
-    .then(validateResponse)
-    .then(readResponseAsJson)
-    .then(logResult)
-    .catch(logError)
+	fetch('examples/animals.json')
+		.then(validateResponse)
+		.then(readResponseAsJson)
+		.then(logResult)
+		.catch(logError)
 }
 const jsonButton = document.getElementById('json-btn');
 jsonButton.addEventListener('click', fetchJSON);
@@ -71,11 +75,11 @@ jsonButton.addEventListener('click', fetchJSON);
 
 // Fetch Image ----------
 function fetchImage() {
-  fetch('examples/fetching.jpg')
-    .then(validateResponse)
-    .then(readResponseAsBlob)
-    .then(showImage)
-    .catch(logError)
+	fetch('examples/fetching.jpg')
+		.then(validateResponse)
+		.then(readResponseAsBlob)
+		.then(showImage)
+		.catch(logError)
 }
 const imgButton = document.getElementById('img-btn');
 imgButton.addEventListener('click', fetchImage);
@@ -83,11 +87,11 @@ imgButton.addEventListener('click', fetchImage);
 
 // Fetch text ----------
 function fetchText() {
-  fetch('examples/words.txt')
-    .then(validateResponse)
-    .then(readResponseAsText)
-    .then(showText)
-    .catch(logError)
+	fetch('examples/words.txt')
+		.then(validateResponse)
+		.then(readResponseAsText)
+		.then(showText)
+		.catch(logError)
 }
 const textButton = document.getElementById('text-btn');
 textButton.addEventListener('click', fetchText);
@@ -95,7 +99,13 @@ textButton.addEventListener('click', fetchText);
 
 // HEAD request ----------
 function headRequest() {
-  // TODO
+	fetch('examples/words.txt', {
+		method: 'HEAD'
+	})
+		.then(validateResponse)
+		// .then(readResponseAsText)
+		.then(logHeader)
+		.catch(logError);
 }
 const headButton = document.getElementById('head-btn');
 headButton.addEventListener('click', headRequest);
@@ -104,7 +114,7 @@ headButton.addEventListener('click', headRequest);
 // POST request ----------
 /* NOTE: Never send unencrypted user credentials in production! */
 function postRequest() {
-  // TODO
+	// TODO
 }
 const postButton = document.getElementById('post-btn');
 postButton.addEventListener('click', postRequest);
