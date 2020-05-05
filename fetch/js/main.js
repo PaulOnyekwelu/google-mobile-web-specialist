@@ -31,23 +31,31 @@ function validateResponse(response) {
   return response;
 }
 
-function readResponseAsJson(response) {
-  return response.json()
-}
 
 function showImage(responseAsBlob) {
   const container = document.getElementById('img-container');
   const imgElem = document.createElement('img');
   container.appendChild(imgElem);
   const imgUrl = URL.createObjectURL(responseAsBlob);
-  console.log(responseAsBlob, imgUrl)
   imgElem.src = imgUrl;
+}
+
+function showText (responseAsText) {
+  const textParagraph = document.querySelector('#message');
+  textParagraph.textContent = responseAsText
+}
+
+function readResponseAsJson(response) {
+  return response.json()
 }
 
 function readResponseAsBlob(response) {
   return response.blob();
 }
 
+function readResponseAsText(response) {
+  return response.text()
+}
 
 // Fetch JSON ----------
 function fetchJSON() {
@@ -57,7 +65,6 @@ function fetchJSON() {
     .then(logResult)
     .catch(logError)
 }
-
 const jsonButton = document.getElementById('json-btn');
 jsonButton.addEventListener('click', fetchJSON);
 
@@ -76,7 +83,11 @@ imgButton.addEventListener('click', fetchImage);
 
 // Fetch text ----------
 function fetchText() {
-  // TODO
+  fetch('examples/words.txt')
+    .then(validateResponse)
+    .then(readResponseAsText)
+    .then(showText)
+    .catch(logError)
 }
 const textButton = document.getElementById('text-btn');
 textButton.addEventListener('click', fetchText);
