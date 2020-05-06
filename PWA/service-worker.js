@@ -1,12 +1,17 @@
-// new service worker
+// new service worker  
+const staticCacheName = 'pages-cache-v1';
+  
 self.addEventListener('install', (e) => {
     console.log('service worker install successfully')
-    // e.waitUntil(caches.open(cache => {
-    //     cache.add('./index.html')
-    //         .then(response => {
-    //             console.log('index.html successfully added: ', response)
-    //         })
-    // }))
+    e.waitUntil(caches.open(staticCacheName)
+        .then(cache => {
+            console.log('attempting to cache static files')
+            return cache.add('/')
+        })
+        .catch(err => {
+            console.log('error caching static files: ', err)
+        })
+    )
     self.skipWaiting()
 })
 
